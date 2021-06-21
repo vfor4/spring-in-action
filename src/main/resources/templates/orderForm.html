@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Taco Cloud</title>
+<style>
+.validationError {
+	color: red;
+}
+</style>
+</head>
+
+<body>
+	<form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+
+		<h2>You have been created Taco, There is your information about
+			your choose:</h2>
+
+		<th:block th:each="taco : ${tacoOrder.tacos}">
+			<span th:text="${taco.id}">INGREDIENT</span>
+			<br />
+			<span th:text="${taco.name}">INGREDIENT</span>
+			<br />
+		</th:block> 
+		
+		<h1>Order your taco creations!</h1>
+		<img th:src="@{/images/TacoCloud.png}" /> <a th:href="@{/design}"
+			id="another">Design another taco</a><br />
+
+		<h3>Deliver my taco masterpieces to...</h3>
+		<label for="delivery_Name">Name: </label> <input
+			th:field="*{delivery_Name}" type="text" /> <span
+			class="validationError" th:if="${#fields.hasErrors('delivery_Name')}"
+			th:errors="*{delivery_Name}">CC Num Error</span> <br /> <label
+			for="delivery_Street">Street address: </label> <input type="text"
+			th:field="*{delivery_Street}" /> <span class="validationError"
+			th:if="${#fields.hasErrors('delivery_Street')}"
+			th:errors="*{delivery_Street}">CC Num Error</span> <br /> <label
+			for="delivery_City">City: </label> <input type="text"
+			th:field="*{delivery_City}" /> <span class="validationError"
+			th:if="${#fields.hasErrors('delivery_City')}"
+			th:errors="*{delivery_City}">CC Num Error</span> <br /> <label
+			for="delivery_State">State: </label> <input type="text"
+			th:field="*{delivery_State}" /> <span class="validationError"
+			th:if="${#fields.hasErrors('delivery_State')}"
+			th:errors="*{delivery_State}">CC Num Error</span> <br /> <label
+			for="delivery_Zip">Zip code: </label> <input type="text"
+			th:field="*{delivery_Zip}" /> <span class="validationError"
+			th:if="${#fields.hasErrors('delivery_Zip')}"
+			th:errors="*{delivery_Zip}">CC Num Error</span> <br />
+
+		<h3>Here's how I'll pay...</h3>
+		<label for="cc_Number">Credit Card #: </label> <input type="text"
+			th:field="*{cc_Number}" /> <span class="validationError"
+			th:if="${#fields.hasErrors('cc_Number')}" th:errors="*{cc_Number}">CC
+			Num Error</span> <br /> <label for="cc_Expiration">Expiration: </label> <input
+			type="text" th:field="*{cc_Expiration}" /> <span
+			class="validationError" th:if="${#fields.hasErrors('cc_Expiration')}"
+			th:errors="*{cc_Expiration}">CC Num Error</span> <br /> <label
+			for="cc_CVV">CVV: </label> <input type="text" th:field="*{cc_CVV}" />
+		<span class="validationError" th:if="${#fields.hasErrors('cc_CVV')}"
+			th:errors="*{cc_CVV}">CC Num Error</span> <br /> <input
+			type="submit" value="Submit Order" />
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			
+	</form>
+</body>
+
+</html>
