@@ -63,7 +63,7 @@ public class TacoOrder implements Serializable {
 	@Column(name = "cc_Expiration")
 	private String ccExpiration;
 
-	@Digits(integer = 3, fraction = 0, message = "Invalid CVVv")
+	@Digits(integer = 3, fraction = 0, message = "Invalid CVV")
 	@Column(name = "cc_CVV")
 	private String ccCVV;
 
